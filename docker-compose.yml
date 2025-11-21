@@ -1,0 +1,17 @@
+services:
+  dev:
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: opencode-dev
+    working_dir: /home/user/workspace
+    volumes:
+      - ./:/home/user/workspace
+      - ./config/opencode.jsonc:/home/user/.config/opencode/opencode.jsonc:ro
+    environment:
+      XDG_CONFIG_HOME: /home/user/.config
+    command: ["sleep", "infinity"]
+    tty: true
+    stdin_open: true
